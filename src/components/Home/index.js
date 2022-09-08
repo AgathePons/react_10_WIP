@@ -4,7 +4,7 @@ import Page from 'src/components/Page';
 import AppHeader from 'src/components/AppHeader';
 import Content from 'src/components/Content';
 
-const Home = () => {
+function Home() {
   const recipes = useSelector((state) => state.recipes.list);
   return (
     <Page>
@@ -16,6 +16,6 @@ const Home = () => {
       />
     </Page>
   );
-};
+}
 
 export default Home;
