@@ -31,7 +31,7 @@ function App({ loading }) {
           )}
         />
         <Route
-          path="/error"
+          path="*"
           element={(
             <Error />
           )}
