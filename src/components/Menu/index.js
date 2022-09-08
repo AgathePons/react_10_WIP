@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 
 import './style.scss';
 
-const Menu = () => {
-  const recipes = useSelector((state) => state.recipes);
+function Menu() {
+  const recipes = useSelector((state) => state.recipes.list);
   return (
     <nav className="menu">
       <a
@@ -23,6 +23,6 @@ const Menu = () => {
       ))}
     </nav>
   );
-};
+}
 
 export default Menu;
