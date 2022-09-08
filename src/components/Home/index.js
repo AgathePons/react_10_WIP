@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 import Page from 'src/components/Page';
 import AppHeader from 'src/components/AppHeader';
 import Content from 'src/components/Content';
+import { selectRecipesList } from '../../selectors/recipes';
 
 function Home() {
-  const recipes = useSelector((state) => state.recipes.list);
+  const recipes = useSelector(selectRecipesList);
   return (
     <Page>
       <AppHeader />

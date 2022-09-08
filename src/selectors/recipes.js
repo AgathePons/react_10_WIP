@@ -13,3 +13,5 @@ export function findRecipe(recipes, searchedSlug) {
   });
   return recipe;
 }
+
+export const selectRecipesList = (state) => state.recipes.list;

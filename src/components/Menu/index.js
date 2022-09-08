@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { selectRecipesList } from '../../selectors/recipes';
 
 import './style.scss';
 
 function Menu() {
-  const recipes = useSelector((state) => state.recipes.list);
+  const recipes = useSelector(selectRecipesList);
   const activeClassName = 'menu-link--active';
   return (
     <nav className="menu">
