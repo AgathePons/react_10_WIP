@@ -7,10 +7,11 @@ import './style.scss';
 function Menu() {
   const recipes = useSelector(selectRecipesList);
   const activeClassName = 'menu-link--active';
+  const classNames = ({ isActive }) => (isActive ? `menu-link ${activeClassName}` : 'menu-link');
   return (
     <nav className="menu">
       <NavLink
-        className={({ isActive }) => (isActive ? `menu-link ${activeClassName}` : 'menu-link')}
+        className={classNames}
         to="/"
       >
         Accueil
@@ -18,7 +19,7 @@ function Menu() {
       {recipes.map((recipe) => (
         <NavLink
           key={recipe.id}
-          className={({ isActive }) => (isActive ? `menu-link ${activeClassName}` : 'menu-link')}
+          className={classNames}
           to={`/recipe/${recipe.slug}`}
         >
           {recipe.title}
