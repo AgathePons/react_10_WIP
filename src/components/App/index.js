@@ -1,25 +1,27 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 
 import Menu from 'src/components/Menu';
 import Home from 'src/components/Home';
 import Recipe from 'src/components/Recipe';
 import Error from 'src/components/Error';
+import { selectRecipesList } from 'src/selectors/recipes';
+import { actionRequestRecipesList } from 'src/actions/recipes';
 import Loading from './Loading';
-
-import { actionRequestRecipesList } from '../../actions/recipes';
 
 import './style.scss';
 
-function App({ loading }) {
+function App() {
   const dispatch = useDispatch();
+  const recipesList = useSelector(selectRecipesList);
+
   useEffect(() => {
     dispatch(actionRequestRecipesList());
   }, []);
 
-  if (loading) {
+  if (recipesList.length === 0) {
     return <Loading />;
   }
   return (

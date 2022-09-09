@@ -1,6 +1,7 @@
 /* eslint-disable arrow-body-style */
 // == Import : npm
-import { Navigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, useParams, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { findRecipe } from 'src/selectors/recipes';
@@ -20,6 +21,11 @@ import './style.scss';
 function Recipe() {
   const params = useParams();
   const recipe = useSelector((state) => findRecipe(state.recipes.list, params.slug));
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [location.pathname]);
 
   if (!recipe) {
     return <Navigate to="/error" replace />;
