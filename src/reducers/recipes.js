@@ -4,6 +4,7 @@ import {
 
 export const initialState = {
   list: [],
+  fetched: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -12,6 +13,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         list: action.payload,
+        fetched: true,
       };
     default:
       return state;

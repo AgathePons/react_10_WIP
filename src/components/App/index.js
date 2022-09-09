@@ -7,7 +7,7 @@ import Menu from 'src/components/Menu';
 import Home from 'src/components/Home';
 import Recipe from 'src/components/Recipe';
 import Error from 'src/components/Error';
-import { selectRecipesList } from 'src/selectors/recipes';
+import { selectRecipesFetched } from 'src/selectors/recipes';
 import { actionRequestRecipesList } from 'src/actions/recipes';
 import Loading from './Loading';
 
@@ -15,13 +15,13 @@ import './style.scss';
 
 function App() {
   const dispatch = useDispatch();
-  const recipesList = useSelector(selectRecipesList);
+  const recipesFetched = useSelector(selectRecipesFetched);
 
   useEffect(() => {
     dispatch(actionRequestRecipesList());
   }, []);
 
-  if (recipesList.length === 0) {
+  if (!recipesFetched) {
     return <Loading />;
   }
   return (

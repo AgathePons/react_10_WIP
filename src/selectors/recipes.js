@@ -15,3 +15,4 @@ export function findRecipe(recipes, searchedSlug) {
 }
 
 export const selectRecipesList = (state) => state.recipes.list;
+export const selectRecipesFetched = (state) => state.recipes.fetched;
