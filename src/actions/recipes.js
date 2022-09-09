@@ -14,7 +14,12 @@ export function actionRequestRecipesList() {
  *  id: Number,
  *  title: String,
  *  slug: String,
+ *  thumbnail: String,
+ *  author: String,
+ *  difficulty: String,
+ *  description: String,
  *  ingredients: Object[]
+ *  instructions: Object[]
  * }>} recipes list of recipes
  * @returns {Action}
  */
