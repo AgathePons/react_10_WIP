@@ -11,9 +11,6 @@ describe('reducer for recipes', () => {
       // we can have many assertions for one test
       // expect(typeof initialState).toBe('object');
     });
-    test('is a function', () => {
-      expect(typeof actionSetRecipesList).toBe('function');
-    })
   });
 
   describe('execution', () => {
