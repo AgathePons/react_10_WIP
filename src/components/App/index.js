@@ -13,7 +13,7 @@ import Loading from './Loading';
 
 import './style.scss';
 
-function App() {
+function App({ isLoading }) {
   const dispatch = useDispatch();
   const recipesFetched = useSelector(selectRecipesFetched);
 
@@ -52,11 +52,11 @@ function App() {
 }
 
 App.propTypes = {
-  loading: PropTypes.bool,
+  isLoading: PropTypes.bool,
 };
 
 App.defaultProps = {
-  loading: false,
+  isLoading: false,
 };
 
 export default App;
