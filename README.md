@@ -2,7 +2,7 @@
 
 ## JEST
 
-## 1. dependancies
+## 1. dependencies
 
 ```bash
 yarn add --dev jest babel-jest @babel/preset-env
