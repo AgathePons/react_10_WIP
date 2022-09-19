@@ -1,8 +1,8 @@
 import { UPDATE_LOGIN_VALUE } from 'src/actions/user';
 
 export const initialState = {
-  email: 'booboo',
-  password: 'babar',
+  email: 'bouclierman@herocorp.io',
+  password: 'jennifer',
   logged: false,
 };
 

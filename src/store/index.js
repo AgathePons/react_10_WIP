@@ -5,12 +5,13 @@ import {
 } from 'redux';
 
 import reducer from 'src/reducers';
-import recipes from '../middlewares/recipesMiddleware';
+import recipesMiddleware from '../middlewares/recipesMiddleware';
+import loginMiddleware from '../middlewares/loginMiddleware';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
-  applyMiddleware(recipes),
+  applyMiddleware(recipesMiddleware, loginMiddleware),
 );
 
 const store = createStore(reducer, enhancers);
