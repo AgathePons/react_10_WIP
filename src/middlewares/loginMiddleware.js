@@ -3,12 +3,14 @@ import {
   actionSetPseudo,
   actionLogin,
   actionErrorLogin,
+  LOGOUT,
 } from '../actions/user';
-import { saveAuthorizationToken } from '../requests/api';
+import { saveAuthorizationToken, removeAuthorizationToken } from '../requests/api';
 import { requestLogin } from '../requests/loginRequests';
 import { requestFavorites } from '../requests/recipesApi';
 
 const loginMiddleware = (store) => (next) => async (action) => {
+  // Login
   if (action.type === SUBMIT_LOGIN) {
     const state = store.getState();
     const { email, password } = state.user;
@@ -40,6 +42,11 @@ const loginMiddleware = (store) => (next) => async (action) => {
     }
     // We do not send SUBMIT_LOGIN to the reducers so return
     return null;
+  }
+  // logout
+  if (action.type === LOGOUT) {
+    removeAuthorizationToken();
+    // no return to let the action go to the reducers
   }
   const result = next(action);
   return result;

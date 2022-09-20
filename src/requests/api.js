@@ -15,4 +15,9 @@ export function saveAuthorizationToken(token) {
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 }
 
+export function removeAuthorizationToken() {
+  // remove the token from the Authorization Headers
+  api.defaults.headers.common.Authorization = '';
+}
+
 export default api;
