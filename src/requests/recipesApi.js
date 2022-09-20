@@ -1,8 +1,8 @@
-import serverInstance from './serverInstance';
+import api from './api';
 
 export const requestRecipes = async () => {
   try {
-    const response = await serverInstance.get('/recipes');
+    const response = await api.get('/recipes');
     console.log(response);
     return response;
   }
@@ -11,13 +11,11 @@ export const requestRecipes = async () => {
   }
 };
 
-export const requestFavorites = async (token) => {
+export const requestFavorites = async () => {
   try {
-    const response = await serverInstance.get('/favorites', {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    });
+    // no need to set the token at each request, because it is set in the middleware
+    // thanks to Axios (see api.js saveAuthorizationToken function)
+    const response = await api.get('/favorites');
     return response;
   }
   catch (err) {

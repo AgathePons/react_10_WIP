@@ -4,6 +4,7 @@ import {
   actionLogin,
   actionErrorLogin,
 } from '../actions/user';
+import { saveAuthorizationToken } from '../requests/api';
 import { requestLogin } from '../requests/loginRequests';
 import { requestFavorites } from '../requests/recipesApi';
 
@@ -12,16 +13,22 @@ const loginMiddleware = (store) => (next) => async (action) => {
     const state = store.getState();
     const { email, password } = state.user;
     const response = await requestLogin(email, password);
+    let responseFavorites;
     console.log(response);
     switch (response.status) {
       case 200:
+        // login
         store.dispatch(
           actionLogin(response.data.token),
         );
+        // pseudo
         store.dispatch(
           actionSetPseudo(response.data.pseudo),
         );
-        const responseFavorites = await requestFavorites(response.data.token);
+        // save token in headers
+        saveAuthorizationToken(response.data.token);
+        // get favorites
+        responseFavorites = await requestFavorites();
         console.log(responseFavorites);
         break;
       case 401:
