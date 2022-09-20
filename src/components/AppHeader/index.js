@@ -26,12 +26,10 @@ function AppHeader() {
   };
 
   const handleLogin = () => {
-    console.log('login clic');
     dispatch(actionSubmitLogin());
   };
 
   const handleLogout = () => {
-    console.log('logout clic');
     dispatch(actionLogout());
   };
 
