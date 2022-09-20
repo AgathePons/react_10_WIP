@@ -44,6 +44,7 @@ function AppHeader() {
         handleLogout={handleLogout}
         isLogged={logged}
         loggedMessage={`Bienvenu ${pseudo} !`}
+        errorMessage={errorMessage}
       />
     </header>
   );

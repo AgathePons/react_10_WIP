@@ -1,4 +1,4 @@
-import requestRecipes from '../requests/recipesApi';
+import { requestRecipes } from '../requests/recipesApi';
 import {
   REQUEST_RECIPES_LIST,
   actionSetRecipesList,

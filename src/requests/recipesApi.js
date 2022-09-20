@@ -1,17 +1,8 @@
-import axios from 'axios';
+import serverInstance from './serverInstance';
 
-const serverAxios = axios.create({
-  baseURL: 'http://localhost:3001',
-});
-
-serverAxios.interceptors.response.use((response) => {
-  console.log('Event triggered at each request with serverAxios.interceptors.response.use()');
-  return response;
-});
-
-const requestRecipes = async () => {
+export const requestRecipes = async () => {
   try {
-    const response = await serverAxios.get('/recipes');
+    const response = await serverInstance.get('/recipes');
     console.log(response);
     return response;
   }
@@ -19,4 +10,17 @@ const requestRecipes = async () => {
     return err.response;
   }
 };
-export default requestRecipes;
+
+export const requestFavorites = async (token) => {
+  try {
+    const response = await serverInstance.get('/favorites', {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  }
+  catch (err) {
+    return err.response;
+  }
+};

@@ -12,6 +12,7 @@ function LoginForm({
   handleLogout,
   isLogged,
   loggedMessage,
+  errorMessage,
 }) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -35,28 +36,32 @@ function LoginForm({
         </div>
       )}
       {!isLogged && (
-
-        <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
-          <Field
-            name="email"
-            placeholder="Adresse Email"
-            onChange={changeField}
-            value={email}
-          />
-          <Field
-            name="password"
-            type="password"
-            placeholder="Mot de passe"
-            onChange={changeField}
-            value={password}
-          />
-          <button
-            type="submit"
-            className="login-form-button"
-          >
-            OK
-          </button>
-        </form>
+        <>
+          <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
+            <Field
+              name="email"
+              placeholder="Adresse Email"
+              onChange={changeField}
+              value={email}
+            />
+            <Field
+              name="password"
+              type="password"
+              placeholder="Mot de passe"
+              onChange={changeField}
+              value={password}
+            />
+            <button
+              type="submit"
+              className="login-form-button"
+            >
+              OK
+            </button>
+          </form>
+          {errorMessage && (
+            <p className="login-form-error">{errorMessage}</p>
+          )}
+        </>
       )}
     </div>
   );
@@ -70,11 +75,13 @@ LoginForm.propTypes = {
   handleLogout: PropTypes.func.isRequired,
   isLogged: PropTypes.bool,
   loggedMessage: PropTypes.string,
+  errorMessage: PropTypes.string,
 };
 
 LoginForm.defaultProps = {
   isLogged: false,
   loggedMessage: 'Connecté',
+  errorMessage: '',
 };
 
 export default LoginForm;
