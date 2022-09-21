@@ -11,7 +11,6 @@ export const initialState = {
   password: 'jennifer',
   logged: false,
   pseudo: '',
-  token: null,
   errorMessage: '',
 };
 
@@ -38,7 +37,6 @@ const reducer = (state = initialState, action = {}) => {
     case LOGOUT:
       return {
         ...state,
-        token: null,
         logged: false,
         pseudo: null,
         email: '',
@@ -49,7 +47,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         password: '',
-        token: null,
         logged: false,
         errorMessage: action.payload,
       };

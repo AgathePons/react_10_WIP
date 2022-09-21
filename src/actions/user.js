@@ -42,13 +42,11 @@ export function actionSetPseudo(pseudo) {
 
 /**
  * action to set logged to true and set the token
- * @param {String} token the token returned from the back
  * @returns {Action}
  */
-export function actionLogin(token) {
+export function actionLogin() {
   return {
     type: LOGIN,
-    payload: token,
   };
 }
 
