@@ -4,7 +4,6 @@ import {
   selectUserPassword,
   selectUserLogged,
   selectUserPseudo,
-  selectUserToken,
   selectUserErrorMessage,
 } from 'src/selectors/user';
 import { actionUpdateLoginValue, actionSubmitLogin, actionLogout } from 'src/actions/user';
@@ -18,7 +17,6 @@ function AppHeader() {
   const password = useSelector(selectUserPassword);
   const logged = useSelector(selectUserLogged);
   const pseudo = useSelector(selectUserPseudo);
-  const token = useSelector(selectUserToken);
   const errorMessage = useSelector(selectUserErrorMessage);
 
   const handleChange = (value, name) => {

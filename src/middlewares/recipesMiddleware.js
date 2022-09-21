@@ -6,6 +6,32 @@ import {
   actionSetRecipesFavorites,
 } from '../actions/recipes';
 
+// BONUS
+// proposal to optimize and refacto the code
+// function generateFunctionRequest(requestFunction, actionToDispatch, mapResponseData = x => x) {
+//   return async (store, action) => {
+//     const response = await requestFunction();
+//     switch (response.status) {
+//       case 200: {
+//         store.dispatch(
+//           actionToDispatch(mapResponseData(response.data)),
+//         );
+//         break;
+//       }
+//       case 500:
+//       default: {
+//         break;
+//       }
+//     }
+//   };
+// }
+// const onRequestRecipesList = generateFunctionRequest(requestRecipesList, actionSetRecipesList);
+// const onRequestRecipesFavorites = generateFunctionRequest(
+//   requestFavorites,
+//   actionSetRecipesFavorites,
+//   data => data.favorites
+// );
+
 async function onRequestRecipesList(store) {
   const response = await requestRecipes();
   switch (response.status) {

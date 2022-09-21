@@ -12,7 +12,10 @@ function Content({ title, text, recipes }) {
       {recipes && (
         <div className="content-list">
           {recipes.map((recipe) => (
-            <Card key={recipe.id} {...recipe} />
+            <Card
+              key={recipe.id}
+              {...recipe}
+            />
           ))}
         </div>
       )}

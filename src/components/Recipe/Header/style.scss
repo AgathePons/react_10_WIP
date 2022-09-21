@@ -26,6 +26,12 @@
   &-title {
     font-size: 2em;
   }
+
+  &-fav {
+    position: absolute;
+    right: 15px;
+    top: calc(50% - 16px);
+  }
   
   &-infos {
     letter-spacing: .05em;

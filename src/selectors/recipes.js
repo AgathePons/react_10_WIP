@@ -15,4 +15,5 @@ export function findRecipe(recipes, searchedSlug) {
 }
 
 export const selectRecipesList = (state) => state.recipes.list;
+export const selectRecipesFavorites = (state) => state.recipes.favorites;
 export const selectRecipesFetched = (state) => state.recipes.fetched;

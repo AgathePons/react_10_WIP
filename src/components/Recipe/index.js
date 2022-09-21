@@ -21,6 +21,7 @@ import './style.scss';
 function Recipe() {
   const params = useParams();
   const recipe = useSelector((state) => findRecipe(state.recipes.list, params.slug));
+  const favorite = useSelector((state) => !!findRecipe(state.recipes.favorites, params.slug));
   const location = useLocation();
 
   useEffect(() => {
@@ -39,6 +40,7 @@ function Recipe() {
           thumbnail={recipe.thumbnail}
           author={recipe.author}
           difficulty={recipe.difficulty}
+          favorite={favorite}
         />
         <Ingredients
           list={recipe.ingredients}
