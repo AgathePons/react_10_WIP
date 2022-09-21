@@ -5,15 +5,14 @@ import {
   actionErrorLogin,
   LOGOUT,
 } from '../actions/user';
+import { actionRequestRecipesFavorites } from '../actions/recipes';
 import { saveAuthorizationToken, removeAuthorizationToken } from '../requests/api';
 import { requestLogin } from '../requests/loginRequests';
-import { requestFavorites } from '../requests/recipesApi';
 
 async function onSubmitLogin(store) {
   const state = store.getState();
   const { email, password } = state.user;
   const response = await requestLogin(email, password);
-  let responseFavorites;
   console.log(response);
   switch (response.status) {
     case 200:
@@ -27,9 +26,10 @@ async function onSubmitLogin(store) {
       );
       // save token in headers
       saveAuthorizationToken(response.data.token);
-      // get favorites
-      responseFavorites = await requestFavorites();
-      console.log(responseFavorites);
+      // action to trigger the request of faborites
+      store.dispatch(
+        actionRequestRecipesFavorites(),
+      );
       break;
     case 401:
     default:
