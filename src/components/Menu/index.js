@@ -1,15 +1,14 @@
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { selectRecipesList } from 'src/selectors/recipes';
-import { selectUserLogged } from 'src/selectors/user';
-
 import './style.scss';
 
-function Menu() {
-  const recipes = useSelector(selectRecipesList);
-  const userLogged = useSelector(selectUserLogged);
+function Menu({
+  recipes,
+  userLogged,
+}) {
   const activeClassName = 'menu-link--active';
   const classNames = ({ isActive }) => (isActive ? `menu-link ${activeClassName}` : 'menu-link');
+
   return (
     <nav className="menu">
       <NavLink
@@ -38,5 +37,14 @@ function Menu() {
     </nav>
   );
 }
+
+Menu.propTypes = {
+  recipes: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired).isRequired,
+  userLogged: PropTypes.bool.isRequired,
+};
 
 export default Menu;

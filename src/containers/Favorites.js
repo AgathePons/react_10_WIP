@@ -21,7 +21,7 @@ function FavoritesContainer() {
   }));
   return (
     <Home
-      title="Les recettes oRecipes"
+      title="Vos recettes oRecipes"
       text={getHomeText(favorites)}
       recipes={recipesWithFavorites}
     />

@@ -1,10 +1,6 @@
-/* eslint-disable arrow-body-style */
-// == Import : npm
 import { useEffect } from 'react';
-import { Navigate, useParams, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
-import { findRecipe } from 'src/selectors/recipes';
+import PropTypes from 'prop-types';
+import { Navigate, useLocation } from 'react-router-dom';
 
 // == Import : local
 // Composants
@@ -18,10 +14,10 @@ import Instructions from './Instructions';
 import './style.scss';
 
 // == Composant
-function Recipe() {
-  const params = useParams();
-  const recipe = useSelector((state) => findRecipe(state.recipes.list, params.slug));
-  const favorite = useSelector((state) => !!findRecipe(state.recipes.favorites, params.slug));
+function Recipe({
+  recipe,
+  isFavorite,
+}) {
   const location = useLocation();
 
   useEffect(() => {
@@ -40,7 +36,7 @@ function Recipe() {
           thumbnail={recipe.thumbnail}
           author={recipe.author}
           difficulty={recipe.difficulty}
-          favorite={favorite}
+          favorite={isFavorite}
         />
         <Ingredients
           list={recipe.ingredients}
@@ -52,6 +48,20 @@ function Recipe() {
     </Page>
   );
 }
+
+Recipe.propTypes = {
+  recipe: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    difficulty: PropTypes.string.isRequired,
+    ingredients: PropTypes.array.isRequired,
+    instructions: PropTypes.array.isRequired,
+  }).isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+};
 
 // == Export
 export default Recipe;

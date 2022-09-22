@@ -1,33 +1,22 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 
-import Menu from 'src/components/Menu';
+import Loading from 'src/components/App/Loading';
+import MenuContainer from 'src/containers/Menu';
 import HomeContainer from 'src/containers/Home';
 import FavoritesContainer from 'src/containers/Favorites';
-import Recipe from 'src/components/Recipe';
+import RecipeContainer from 'src/containers/Recipe';
 import Error from 'src/components/Error';
-import { selectRecipesFetched } from 'src/selectors/recipes';
-import { actionRequestRecipesList } from 'src/actions/recipes';
-import Loading from './Loading';
 
 import './style.scss';
 
-function App({ isLoading }) {
-  const dispatch = useDispatch();
-  const recipesFetched = useSelector(selectRecipesFetched);
-
-  useEffect(() => {
-    dispatch(actionRequestRecipesList());
-  }, []);
-
-  if (!recipesFetched) {
+function App({ isLoaded }) {
+  if (!isLoaded) {
     return <Loading />;
   }
   return (
     <div className="app">
-      <Menu />
+      <MenuContainer />
       <Routes>
         <Route
           path="/"
@@ -44,7 +33,7 @@ function App({ isLoading }) {
         <Route
           path="/recipe/:slug"
           element={(
-            <Recipe />
+            <RecipeContainer />
           )}
         />
         <Route
@@ -59,11 +48,11 @@ function App({ isLoading }) {
 }
 
 App.propTypes = {
-  isLoading: PropTypes.bool,
+  isLoaded: PropTypes.bool,
 };
 
 App.defaultProps = {
-  isLoading: false,
+  isLoaded: false,
 };
 
 export default App;
