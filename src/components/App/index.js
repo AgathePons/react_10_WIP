@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 
 import Menu from 'src/components/Menu';
-import Home from 'src/components/Home';
+import HomeContainer from 'src/containers/Home';
+import FavoritesContainer from 'src/containers/Favorites';
 import Recipe from 'src/components/Recipe';
 import Error from 'src/components/Error';
 import { selectRecipesFetched } from 'src/selectors/recipes';
@@ -31,7 +32,13 @@ function App({ isLoading }) {
         <Route
           path="/"
           element={(
-            <Home />
+            <HomeContainer />
+          )}
+        />
+        <Route
+          path="/favorites"
+          element={(
+            <FavoritesContainer />
           )}
         />
         <Route

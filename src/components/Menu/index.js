@@ -1,11 +1,13 @@
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { selectRecipesList } from '../../selectors/recipes';
+import { selectRecipesList } from 'src/selectors/recipes';
+import { selectUserLogged } from 'src/selectors/user';
 
 import './style.scss';
 
 function Menu() {
   const recipes = useSelector(selectRecipesList);
+  const userLogged = useSelector(selectUserLogged);
   const activeClassName = 'menu-link--active';
   const classNames = ({ isActive }) => (isActive ? `menu-link ${activeClassName}` : 'menu-link');
   return (
@@ -16,6 +18,14 @@ function Menu() {
       >
         Accueil
       </NavLink>
+      {userLogged && (
+        <NavLink
+          className={classNames}
+          to="/favorites"
+        >
+          Mes recettes
+        </NavLink>
+      )}
       {recipes.map((recipe) => (
         <NavLink
           key={recipe.id}

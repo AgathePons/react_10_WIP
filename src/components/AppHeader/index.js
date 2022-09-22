@@ -1,40 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectUserEmail,
-  selectUserPassword,
-  selectUserLogged,
-  selectUserPseudo,
-  selectUserErrorMessage,
-} from 'src/selectors/user';
-import { actionUpdateLoginValue, actionSubmitLogin, actionLogout } from 'src/actions/user';
 import './style.scss';
 import logo from '../../assets/logo.png';
-import LoginForm from '../LoginForm';
+import LoginFormContainer from '../../containers/LoginForm';
 
-function AppHeader() {
-  const dispatch = useDispatch();
-  const email = useSelector(selectUserEmail);
-  const password = useSelector(selectUserPassword);
-  const logged = useSelector(selectUserLogged);
-  const pseudo = useSelector(selectUserPseudo);
-  const errorMessage = useSelector(selectUserErrorMessage);
-
-  const handleChange = (value, name) => {
-    dispatch(actionUpdateLoginValue(value, name));
-  };
-
-  const handleLogin = () => {
-    dispatch(actionSubmitLogin());
-  };
-
-  const handleLogout = () => {
-    dispatch(actionLogout());
-  };
-
+function AppHeader(
+  email,
+  password,
+  handleChange,
+  handleLogin,
+  handleLogout,
+  logged,
+  pseudo,
+  errorMessage,
+) {
   return (
     <header className="header">
       <img src={logo} className="header-logo" alt="Logo oRecipes" />
-      <LoginForm
+      <LoginFormContainer
         email={email}
         password={password}
         changeField={handleChange}
